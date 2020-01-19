@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import firebase from 'firebase'
+import {firebaseConfig} from "./firebase/firebase";
+import UserHandler from "./utils/usersHandlers/UserHandler";
+
+firebase.initializeApp(firebaseConfig);
+
+UserHandler.database = firebase.firestore();
+UserHandler.auth = firebase.auth();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
