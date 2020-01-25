@@ -1,12 +1,14 @@
 $enable-gradients: true;
 @import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/css/fontawesome.css";
 
-
-html, body, #root, .main {
+html, body, #root, .main, .application {
     width: 100%;
     height: 100%;
 }
 
+// main page
 .main {
     background: rgb(195,147,34);
     background: linear-gradient(96deg, rgb(195, 100, 21) 0%, rgb(255, 58, 83) 100%);
@@ -48,4 +50,95 @@ html, body, #root, .main {
             }
         }
     }
+}
+
+// application page
+.application {
+
+    &-nav {
+        background: rgb(222,113,62);
+        background: linear-gradient(58deg, rgba(222,113,62,0.9668242296918768) 31%, rgba(214,176,87,1) 100%);
+        font-family: Dialog;
+    }
+
+    a, a:visited {
+        text-decoration: none;
+        color: darkblue;
+    }
+
+    &-list {
+        width: 30%;
+        height: 65%;
+        margin: auto;
+        margin-top: 50px;
+
+        table {
+            width: 80%;
+            margin: auto;
+
+            tr {
+                :nth-child(1) {
+                    width: 90%;
+                }
+                :nth-child(2) {
+                    font-size: 18px;
+                    text-align: center;
+                    i {
+                        color: darkcyan;
+                        cursor: pointer;
+                    }
+                }
+                :nth-child(3) {
+                    font-size: 18px;
+                    text-align: center;
+                    i {
+                        transition: color 0.4s;
+                    }
+                    i:hover {
+                        cursor: pointer;
+                        color: orangered;
+                    }
+                }
+            }
+        }
+
+        &-content {
+            height: 100%;
+            width: 100%;
+            border: {
+                left: #dee2e6 solid 1px;
+                right: #dee2e6 solid 1px;
+                bottom: #dee2e6 solid 1px;
+            };
+        }
+    }
+
+    &-additem {
+        position: absolute;
+        bottom: 10%;
+        right: 5%;
+    }
+}
+
+//utils
+
+.color-orangered {
+    color: orangered !important;
+}
+
+.bgcolor-orangered {
+    background-color: orangered !important;
+}
+
+.btn-orangered-outlined {
+    background-color: white;
+    color: orangered;
+    border-color: orangered;
+    transition: background-color 0.3s;
+}
+
+.btn-orangered-outlined:hover {
+    background-color: orangered;
+    color: white;
+    border-color: orangered;
 }

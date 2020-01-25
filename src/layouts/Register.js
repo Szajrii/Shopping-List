@@ -41,7 +41,7 @@ export default class Register extends React.Component {
                 displayWarning: false
             });
         }, 8000);
-    }
+    };
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -77,7 +77,14 @@ export default class Register extends React.Component {
         }
 
         RegisterHandler.registerUser(this.state.email, this.state.password, this.state.nickname)
-            .then(()=> this.props.history.push('/app/' + this.state.nickname))
+            .then(()=> this.props.history.push('/app' ))
+            .catch(err => {
+                this.setState({
+                    displayWarning: true,
+                    warning: err.message
+                });
+                this.displayWarning();
+            })
     };
 
     render() {

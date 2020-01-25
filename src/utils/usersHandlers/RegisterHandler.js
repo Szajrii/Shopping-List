@@ -9,7 +9,8 @@ export default class RegisterHandler extends UserHandler {
     static registerUser(email, password, nickname) {
         return RegisterHandler.auth.createUserWithEmailAndPassword(email, password)
             .then( () =>{
-                RegisterHandler.database.collection("Users").doc(nickname).set({
+                RegisterHandler.database.collection("Users").doc(email).set({
+                    email,
                     nickname,
                     shoppingListActive: 0,
                     shoppingListDone: 0,

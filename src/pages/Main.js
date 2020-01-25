@@ -8,7 +8,7 @@ export default () => {
         <div className="main">
             <div className="panel">
                 <Route path="/" exact component={Login}></Route>
-                <Route path="/register" component={Register}></Route>
+                <Route path="/register" exact component={Register}></Route>
             </div>
         </div>
     )

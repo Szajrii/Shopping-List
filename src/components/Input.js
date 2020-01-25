@@ -7,7 +7,6 @@ export default (props) => {
             value={props.value}
             onChange={props.handleChange}
             className="form-control"
-            aria-describedby="emailHelp"
         />
     )
 }
