@@ -77,7 +77,7 @@ export default class Register extends React.Component {
         }
 
         RegisterHandler.registerUser(this.state.email, this.state.password, this.state.nickname)
-            .then(()=> this.props.history.push('/app' ))
+            .then(()=> this.props.history.push({pathname: '/app', state: {email: this.state.email }}))
             .catch(err => {
                 this.setState({
                     displayWarning: true,

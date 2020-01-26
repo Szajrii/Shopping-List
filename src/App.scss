@@ -142,3 +142,24 @@ html, body, #root, .main, .application {
     color: white;
     border-color: orangered;
 }
+
+.modal {
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #c9c9c9;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: orangered;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ae1018;
+    }
+}

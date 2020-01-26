@@ -6,7 +6,7 @@ export default (props) => {
         <div className="application-list-content">
             <table className="table table-borderless">
                 <tbody>
-                {props.list.map((item, index) => <TableItem name={item} key={'tableItem' + index}/>)}
+                {props.list.map((item, index) => <TableItem name={item.title} key={'tableItem' + index}/>)}
                 </tbody>
             </table>
         </div>

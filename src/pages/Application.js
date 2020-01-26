@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 import ShoppingList from '../layouts/ShoppingList';
 import Button from '../components/Button';
 import AddingModal from  '../layouts/AddingModal'
+import ListHandler from "../utils/listHandler/ListHandler";
 
 export default class Application extends React.Component {
 
@@ -12,11 +13,12 @@ export default class Application extends React.Component {
 
         this.state = {
             list: {
-                fullList: ["Urodziny", "Pizza", "Obiad", "Lody"],
+                fullList: [],
                 listToDisplay: []
             },
             showModalForAdding: false,
-            showModalForItemDetails: false
+            showModalForItemDetails: false,
+            listHandler: new ListHandler(this.props.location.state.email)
         }
     }
 
@@ -26,10 +28,28 @@ export default class Application extends React.Component {
         })
     };
 
+    updateList = () => {
+        this.state.listHandler.downloadLists()
+            .then(doc => {
+                this.setState({
+                    list: {
+                        fullList: doc.data().shoppingList
+                    }
+                })
+            })
+            .catch(err => console.log(err));
+    };
+
     componentWillUpdate(nextProps, nextState, nextContext) {
         if (nextState.showModalForAdding) {
             $('#addingModal').modal('show')
+        } else {
+            $('#addingModal').modal('hide')
         }
+    }
+
+    componentDidMount() {
+        this.updateList();
     }
 
     render() {
@@ -56,7 +76,7 @@ export default class Application extends React.Component {
                 <div className="application-additem">
                     <Button classNames="btn btn-outline-info" width="150px" text="Add Item" click={this.handleClickForAddingModal}/>
                 </div>
-                <AddingModal />
+                <AddingModal addingHandler={this.state.listHandler.uploadList} updateList={this.updateList}/>
             </div>
         )
     }
