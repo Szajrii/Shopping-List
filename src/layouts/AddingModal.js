@@ -99,7 +99,10 @@ export default class AddingModal extends React.Component {
 
       if (this.fieldAreValid()) {
           this.props.addingHandler(list)
-              .then(this.props.updateList())
+              .then( () => {
+                  this.props.updateList();
+                  this.props.dismiss();
+              })
               .catch(err => console.log(err));
       }
     };
@@ -111,7 +114,7 @@ export default class AddingModal extends React.Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">Add list item</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.props.dismiss}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <br/>
@@ -135,7 +138,7 @@ export default class AddingModal extends React.Component {
                             <Button width="150px" text="Add item" classNames="btn btn-outline-primary" click={this.addItem}/>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.props.dismiss}>Close</button>
                             <button type="button" className="btn btn-primary bgcolor-orangered" onClick={this.handleUpload}>Upload changes</button>
                         </div>
                     </div>
